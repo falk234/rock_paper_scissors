@@ -24,3 +24,10 @@ if (computerChoice===1){
 // Show decision of computer
 
 console.log("Der Computer hat sich für \"" + computerChoiceString + "\" entschieden");
+
+// GET player selection 
+
+let playerSelection = prompt("What is your choice?", "Rock | Paper | Scissors");
+playerSelection= playerSelection.toLowerCase();
+
+console.log("playerselection: " + playerSelection);
