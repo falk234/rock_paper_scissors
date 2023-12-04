@@ -1,47 +1,44 @@
 // Calculate Computer Choice using randomly generated numbers 1, 2, 3 for rock, paper, scissors
 
 //Calculate random number 1,2 or 3.
-
-function getRandomInt(max){
-    return Math.floor(Math.random() * max) +1;
+function getRandomInt(){
+    return Math.floor(Math.random() * 3) +1;
 }
 
-let computerChoice= getRandomInt(3);
-let computerChoiceString;
+// Get Computer Choice
+function getComputerChoiceInt(){
+    // Return 1,2 or 3
+    return getRandomInt();
+}
+
 
 // Translate random number to rock, paper or scissor
-
-function computerChoiceIntToString(computerChoice){
-    if (computerChoice===1){
+function computerChoiceIntToString(computerChoiceInt){
+    if (computerChoiceInt===1){
         return "rock";
-    }else if (computerChoice===2){
+    }else if (computerChoiceInt===2){
         return "paper";
-    }else if (computerChoice===3){
+    }else if (computerChoiceInt===3){
         return "scissor";
     }else{
         alert("Fehler: Es wurde eine falsche Zahl generiert!")
     }
 }
 
-computerChoiceString=computerChoiceIntToString(computerChoice);
-
-
-
-// Show decision of computer
-
-console.log("Der Computer hat sich für \"" + computerChoiceString + "\" entschieden");
 
 // GET player selection 
 
-let playerSelectionString = prompt("What is your choice?", "Rock | Paper | Scissors");
-playerSelectionString= playerSelectionString.toLowerCase();
+function getPlayerSelectionString(){
+    // return (prompt("What is your choice?", "Rock | Paper | Scissors")).toLocaleLowerCase();
 
-console.log("Der Spieler hat sich für \"" + playerSelectionString + "\" entschieden");
+    let playerSelectionString = prompt("What is your choice?", "Rock? | Paper? | Scissors?");
+    playerSelectionString= playerSelectionString.toLowerCase();
+    return playerSelectionString;
+    // console.log("Der Spieler hat sich für \"" + playerSelectionString + "\" entschieden");
+}
 
+// Translate playerSelectionString to Int
 
-// Translate playerSelection string to Int
-
-let playerSelection;
 
 function playerSelectionStringToInt(playerSelectionString){
     if (playerSelectionString==="rock"){
@@ -57,6 +54,7 @@ function playerSelectionStringToInt(playerSelectionString){
 }
 
 // Play game to get winner
+
     // player + computer => 
     // rock + paper => loose
     // rock + scissor => win
@@ -70,19 +68,40 @@ function playerSelectionStringToInt(playerSelectionString){
     // scissor + paper => win
     // scissor + scissor => ties
 
-playerSelection=playerSelectionStringToInt(playerSelectionString);
 
-function play_game(computerChoiceString,playerSelectionString){
+function playGame(computerChoiceString,playerSelectionString){
     if ((playerSelectionString==="rock") && (computerChoiceString==="paper") || (playerSelectionString==="paper") && (computerChoiceString==="scissor") || (playerSelectionString==="scissor") && (computerChoiceString==="rock")){
         return ('You lose! ' + computerChoiceString + ' beats ' + playerSelectionString);
     }else if((playerSelectionString==="rock") && (computerChoiceString==="scissor") || (playerSelectionString==="paper") && (computerChoiceString==="rock") || (playerSelectionString==="scissor") && (computerChoiceString==="paper")){
         return ('You win! ' + playerSelectionString + ' beats ' + computerChoiceString);
-    }else if(playerSelection===computerChoice){
-        return "You both chose the same, try again!"
+    }else if(playerSelectionString===computerChoiceString){
+        return "Ties. Try again!";
     }else{
         return "Diese Möglicheit ist noch nicht implementiert.";
     }
 }
 
+// console.log(playGame(computerChoiceString,playerSelectionString));
 
-console.log(play_game(computerChoiceString,playerSelectionString));
+// DEFINE function that plays 5x "playGame"
+
+let repeat =5;
+playMultipleGames(repeat);
+
+function playMultipleGames(repeat){
+    console.log("Repeat:"+repeat);
+    while (repeat > 0){
+        let computerChoiceInt=getComputerChoiceInt();
+        let computerChoiceString=computerChoiceIntToString(computerChoiceInt);
+        console.log("Der Computer hat sich für \"" + computerChoiceString + "\" entschieden");
+
+        let playerSelectionString=getPlayerSelectionString();
+        // let playerSelectionInt=playerSelectionStringToInt();
+        console.log("Der Spieler hat sich für \"" + playerSelectionString + "\" entschieden");
+
+        console.log(playGame(computerChoiceString,playerSelectionString));
+
+        repeat--;
+    }
+
+}
