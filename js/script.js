@@ -27,7 +27,19 @@ console.log("Der Computer hat sich für \"" + computerChoiceString + "\" entschi
 
 // GET player selection 
 
-let playerSelection = prompt("What is your choice?", "Rock | Paper | Scissors");
-playerSelection= playerSelection.toLowerCase();
+let playerSelectionString = prompt("What is your choice?", "Rock | Paper | Scissors");
+playerSelectionString= playerSelectionString.toLowerCase();
 
-console.log("playerselection: " + playerSelection);
+console.log("playerselection: " + playerSelectionString);
+
+let playerSelection;
+
+if (playerSelectionString==="rock"){
+    playerSelection=1;
+}else if (playerSelectionString==="paper"){
+    playerSelection=2;
+}else if (playerSelectionString==="scissor"){
+    playerSelection=3;
+}else{
+    alert('Fehler: "' + playerSelectionString + '" ist keine gültige Eingabe.\n\nNur "Schere", "Stein" oder "Papier" sind erlaubt');
+}
