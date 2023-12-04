@@ -29,13 +29,32 @@ function computerChoiceIntToString(computerChoiceInt){
 // GET player selection 
 
 function getPlayerSelectionString(){
-    // return (prompt("What is your choice?", "Rock | Paper | Scissors")).toLocaleLowerCase();
-
+    // return ((prompt("What is your choice?", "Rock | Paper | Scissors")).toLocaleLowerCase());
+    
     let playerSelectionString = prompt("What is your choice?", "Rock? | Paper? | Scissors?");
     playerSelectionString= playerSelectionString.toLowerCase();
-    return playerSelectionString;
+    
+    while (!checkPlayerSelectionString(playerSelectionString)){
+        playerSelectionString = prompt("What is your choice?", "Rock? | Paper? | Scissors?");
+        playerSelectionString= playerSelectionString.toLowerCase();
+    }
     // console.log("Der Spieler hat sich für \"" + playerSelectionString + "\" entschieden");
+    return playerSelectionString;
 }
+
+//Check if player selection is valid
+function checkPlayerSelectionString(playerSelectionString){
+    if ((playerSelectionString==="rock") || (playerSelectionString==="paper") || (playerSelectionString==="scissor")){
+        return true;
+    }else {
+        console.log("Der Spieler hat sich leider für \"" + playerSelectionString + "\" entschieden");
+        alert('Fehler: "' + playerSelectionString + '" ist keine gültige Eingabe.\n\nNur "rock", "paper" oder "scissor" sind erlaubt');
+        return false;
+    }
+
+}
+
+
 
 // Translate playerSelectionString to Int
 
@@ -49,7 +68,7 @@ function playerSelectionStringToInt(playerSelectionString){
         return 3;
     }else{
         alert('Fehler: "' + playerSelectionString + '" ist keine gültige Eingabe.\n\nNur "Schere", "Stein" oder "Papier" sind erlaubt');
-        return undefined;
+        return 4;
     }
 }
 
@@ -81,9 +100,7 @@ function playGame(computerChoiceString,playerSelectionString){
     }
 }
 
-// console.log(playGame(computerChoiceString,playerSelectionString));
-
-// DEFINE function that plays 5x "playGame"
+// DEFINE function that plays "playGame" multiple times"
 
 let repeat =5;
 playMultipleGames(repeat);
@@ -97,7 +114,7 @@ function playMultipleGames(repeat){
 
         let playerSelectionString=getPlayerSelectionString();
         // let playerSelectionInt=playerSelectionStringToInt();
-        console.log("Der Spieler hat sich für \"" + playerSelectionString + "\" entschieden");
+        console.log("Der Spieler hat sich für \"" + playerSelectionString + "\" (gültig) entschieden");
 
         console.log(playGame(computerChoiceString,playerSelectionString));
 
@@ -105,3 +122,7 @@ function playMultipleGames(repeat){
     }
 
 }
+
+// Abbruch Eingabe
+// Schleife für prompt falsche eingabe
+// Punkte zählen und Winner ausgeben
