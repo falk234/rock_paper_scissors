@@ -21,7 +21,7 @@ function computerChoiceIntToString(computerChoiceInt){
     }else if (computerChoiceInt===3){
         return "scissor";
     }else{
-        alert("Fehler: Es wurde eine falsche Zahl generiert!")
+        alert("Error: A wrong number has been transmitted!")
     }
 }
 
@@ -47,8 +47,8 @@ function checkPlayerSelectionString(playerSelectionString){
     if ((playerSelectionString==="rock") || (playerSelectionString==="paper") || (playerSelectionString==="scissor")){
         return true;
     }else {
-        console.log("Der Spieler hat sich leider für \"" + playerSelectionString + "\" entschieden");
-        alert('Fehler: "' + playerSelectionString + '" ist keine gültige Eingabe.\n\nNur "rock", "paper" oder "scissor" sind erlaubt');
+        console.log("The player has chosen a not valid input: \"" + playerSelectionString + "\"");
+        alert('Error: "' + playerSelectionString + '" is not a valid input.\n\nOnly "rock", "paper" oder "scissor" are allowed');
         return false;
     }
 
@@ -56,21 +56,21 @@ function checkPlayerSelectionString(playerSelectionString){
 
 
 
-// Translate playerSelectionString to Int
+// Translate playerSelectionString to Int => currently no use-case for this
 
 
-function playerSelectionStringToInt(playerSelectionString){
-    if (playerSelectionString==="rock"){
-        return 1;
-    }else if (playerSelectionString==="paper"){
-        return 2;
-    }else if (playerSelectionString==="scissor"){
-        return 3;
-    }else{
-        alert('Fehler: "' + playerSelectionString + '" ist keine gültige Eingabe.\n\nNur "Schere", "Stein" oder "Papier" sind erlaubt');
-        return 4;
-    }
-}
+// function playerSelectionStringToInt(playerSelectionString){
+    // if (playerSelectionString==="rock"){
+        // return 1;
+    // }else if (playerSelectionString==="paper"){
+        // return 2;
+    // }else if (playerSelectionString==="scissor"){
+        // return 3;
+    // }else{
+        // alert('Fehler: "' + playerSelectionString + '" ist keine gültige Eingabe.\n\nNur "Schere", "Stein" oder "Papier" sind erlaubt');
+        // return 4;
+    // }
+// }
 
 // Play game to get winner
 
@@ -96,7 +96,7 @@ function playGame(computerChoiceString,playerSelectionString){
     }else if(playerSelectionString===computerChoiceString){
         return "Ties. Try again!";
     }else{
-        return "Diese Möglicheit ist noch nicht implementiert.";
+        return "Error. Something went wrong at playGame()";
     }
 }
 
@@ -106,15 +106,16 @@ let repeat =5;
 playMultipleGames(repeat);
 
 function playMultipleGames(repeat){
-    console.log("Repeat:"+repeat);
+    console.log("Rounds:"+repeat);
     while (repeat > 0){
+        console.log("Rounds left:" + repeat);
         let computerChoiceInt=getComputerChoiceInt();
         let computerChoiceString=computerChoiceIntToString(computerChoiceInt);
-        console.log("Der Computer hat sich für \"" + computerChoiceString + "\" entschieden");
+        console.log("The computer has chosen: \"" + computerChoiceString + "\"");
 
         let playerSelectionString=getPlayerSelectionString();
         // let playerSelectionInt=playerSelectionStringToInt();
-        console.log("Der Spieler hat sich für \"" + playerSelectionString + "\" (gültig) entschieden");
+        console.log("The player has chosen: \"" + playerSelectionString + "\"");
 
         console.log(playGame(computerChoiceString,playerSelectionString));
 
@@ -124,5 +125,5 @@ function playMultipleGames(repeat){
 }
 
 // Abbruch Eingabe
-// Schleife für prompt falsche eingabe
+// Schleife für prompt falsche eingabe (/)
 // Punkte zählen und Winner ausgeben
