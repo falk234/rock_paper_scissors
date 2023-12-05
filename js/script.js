@@ -1,3 +1,6 @@
+// let test=prompt("Was passiert hier?");
+// console.log(test);
+
 // Calculate Computer Choice using randomly generated numbers 1, 2, 3 for rock, paper, scissors
 
 //Calculate random number 1,2 or 3.
@@ -25,18 +28,28 @@ function computerChoiceIntToString(computerChoiceInt){
     }
 }
 
+// WhatIsYourChoice Prompt
+
+function displayPlayerPrompt(){
+    let input = prompt("What is your choice?", "Rock? | Paper? | Scissors?");
+    if (input===null){
+        return false;
+    }else{
+        return input.toLocaleLowerCase();
+    }
+}
 
 // GET player selection 
 
 function getPlayerSelectionString(){
     // return ((prompt("What is your choice?", "Rock | Paper | Scissors")).toLocaleLowerCase());
     
-    let playerSelectionString = prompt("What is your choice?", "Rock? | Paper? | Scissors?");
-    playerSelectionString= playerSelectionString.toLowerCase();
+    let playerSelectionString = displayPlayerPrompt();
+
+    if (playerSelectionString==false){return false}
     
     while (!checkPlayerSelectionString(playerSelectionString)){
-        playerSelectionString = prompt("What is your choice?", "Rock? | Paper? | Scissors?");
-        playerSelectionString= playerSelectionString.toLowerCase();
+        playerSelectionString = displayPlayerPrompt();
     }
     // console.log("Der Spieler hat sich für \"" + playerSelectionString + "\" entschieden");
     return playerSelectionString;
@@ -115,6 +128,7 @@ function playMultipleGames(repeat){
 
         let playerSelectionString=getPlayerSelectionString();
         // let playerSelectionInt=playerSelectionStringToInt();
+        if (playerSelectionString==false){break}
         console.log("The player has chosen: \"" + playerSelectionString + "\"");
 
         console.log(playGame(computerChoiceString,playerSelectionString));
