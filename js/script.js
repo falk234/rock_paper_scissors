@@ -30,7 +30,8 @@ function getPlayerChoice(){
 // ELSEIF input is not lowercase "rock, paper, scissor" OR not type 'string' THEN
 // DISPLAY "Wrong input. Please enter rock, paper or scissor!"
 // SET repeat to "true"
-        }else if ((typeof input !== "string")|| ((typeof input === "string") && !((input.toLowerCase() === "rock") || (input.toLowerCase() === "paper") || (input.toLowerCase() === "scissor")))){
+        // }else if ((typeof input !== "string")|| ((typeof input === "string") && !((input.toLowerCase() === "rock") || (input.toLowerCase() === "paper") || (input.toLowerCase() === "scissor")))){
+        }else if ((typeof input !== "string") || !((input.toLowerCase() === "rock") || (input.toLowerCase() === "paper") || (input.toLowerCase() === "scissor"))){
             alert('Wrong input. Please enter "rock", "paper" or "scissor!"');
             repeat=true;
 // ELSE repeat=false
