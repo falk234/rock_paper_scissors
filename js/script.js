@@ -28,6 +28,38 @@ function computerChoiceIntToString(computerChoiceInt){
     }
 }
 
+// New Display Player Prompt
+
+// function newGetPlayerInput(){
+//     let input=prompt("Paper, Stone or Scissor?");
+//     return input;
+// }
+
+// let playerInput=newGetPlayerInput();
+
+// New Check Player Input
+
+// function newCheckPlayerInput(playerInput){
+//     if (playerInput==null){
+//         return -1;
+//     }else if (["rock","paper","scissor"].includes(playerInput.toLowerCase())){
+//         return ;
+//     }else if (!["rock","paper","scissor"].includes(playerInput.toLowerCase())){
+//         return 0;
+//     }
+// }
+
+// New playGameEnvironment
+   
+// function newPlayGameEnvironment(){
+//     let computerChoice=computerChoiceIntToString(getComputerChoiceInt());
+//     let playerChoice=newCheckPlayerInput(newGetPlayerInput());
+//     let gameplay=newCheckPlayerInput(playerInput);
+// }
+
+
+
+
 // WhatIsYourChoice Prompt
 
 function displayPlayerPrompt(){
@@ -104,10 +136,13 @@ function checkPlayerSelectionString(playerSelectionString){
 function playGame(computerChoiceString,playerSelectionString){
     if ((playerSelectionString==="rock") && (computerChoiceString==="paper") || (playerSelectionString==="paper") && (computerChoiceString==="scissor") || (playerSelectionString==="scissor") && (computerChoiceString==="rock")){
         return ('You lose! ' + computerChoiceString + ' beats ' + playerSelectionString);
+        // return "false";
     }else if((playerSelectionString==="rock") && (computerChoiceString==="scissor") || (playerSelectionString==="paper") && (computerChoiceString==="rock") || (playerSelectionString==="scissor") && (computerChoiceString==="paper")){
         return ('You win! ' + playerSelectionString + ' beats ' + computerChoiceString);
+        // return "true";
     }else if(playerSelectionString===computerChoiceString){
         return "Ties. Try again!";
+        // return "ties";
     }else{
         return "Error. Something went wrong at playGame()";
     }
@@ -120,6 +155,8 @@ playMultipleGames(repeat);
 
 function playMultipleGames(repeat){
     console.log("Rounds:"+repeat);
+    let computerPoints=0;
+    let playerPoints=0;
     while (repeat > 0){
         console.log("Rounds left:" + repeat);
         let computerChoiceInt=getComputerChoiceInt();
@@ -130,7 +167,7 @@ function playMultipleGames(repeat){
         // let playerSelectionInt=playerSelectionStringToInt();
         if (playerSelectionString==false){break}
         console.log("The player has chosen: \"" + playerSelectionString + "\"");
-
+        
         console.log(playGame(computerChoiceString,playerSelectionString));
 
         repeat--;
@@ -138,6 +175,13 @@ function playMultipleGames(repeat){
 
 }
 
-// Abbruch Eingabe
+// Count points every round and announce winner
+
+
+
+
+// Abbruch Eingabe (/)
 // Schleife für prompt falsche eingabe (/)
 // Punkte zählen und Winner ausgeben
+
+// Jede Runde sollen die Punkte gezählt und am Ende der Sieger benannt werden 
