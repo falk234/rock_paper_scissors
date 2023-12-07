@@ -4,6 +4,19 @@
 //     RETURN computerChoice
 // ENDFUNCTION
 
+function getComputerChoice(){
+    // COMPUTE random number 1-3
+    let number = Math.floor(Math.random() * 3) +1;
+    //     SET computerChoice to "rock", "paper", "scissor"
+    switch(number){
+        case 1: return "rock";
+        case 2: return "paper";
+        case 3: return "scissor";
+    }
+}
+
+console.log(getComputerChoice());
+
 // FUNCTION getPlayerChoice
 //     DISPLAY prompt "Rock, Paper or Scissor?"
 //     GET input from prompt
@@ -22,6 +35,7 @@
 //             ENDIF
 //         ENDIF
 //     RETURN playerChoice
+// ENDFUNCTION
 
 
 // FUNCTION determineGameDecision (computerChoice,playerChoice)
