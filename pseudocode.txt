@@ -1,0 +1,124 @@
+FUNCTION getComputerChoice
+    COMPUTE random number 1-3
+    SET computerChoice to "rock", "paper", "scissor"
+    RETURN computerChoice
+ENDFUNCTION
+
+FUNCTION getPlayerChoice
+    DISPLAY prompt "Rock, Paper or Scissor?"
+    GET input from prompt
+        IF input is null THEN
+        PRINT "BYE BYE"
+        SET playerChoice to "byebye"
+            ELSEIF  input is not lowercase "rock, paper, scissor" THEN
+                REPEAT 
+                    DISPLAY prompt "Wrong input. Please enter rock, paper or scissor"
+                    GET input from prompt
+                UNTIL input is lowercase "rock,paper,scissor"
+                SET playerChoice to input
+            ENDIF
+            ELSEIF  input is lowercase "rock,paper, scissor" THEN
+                SET playerChoice to input
+            ENDIF
+        ENDIF
+    RETURN playerChoice
+
+
+FUNCTION determineGameDecision (computerChoice,playerChoice)
+    INIT decision
+    SET lost_condition to "(computerChoice is rock AND playerChoice is scissor) OR
+                            (computerChoice is paper AND playerChoice is rock) OR
+                            (computerChoice is scissor AND playerChoice is paper)"
+    IF computerChoice is playerChoice THEN
+        SET decision to "tie"
+        ELSEIF  lost_condition THEN
+                SET decision to "lost"
+        ENDIF
+        ELSEIF !lost_condition THEN
+                SET decision to "win"
+        ENDIF
+    ENDIF          
+    RETURN decision
+ENDFUNCTION
+
+SET rounds
+FUNCTION playGame (rounds)
+    SET currentRound to 1
+    SET playerPoints to 0
+    SET computerPoints to 0
+    SET REPEAT to 0
+    REPEAT
+        PRINT "round 'currentRound' of 'rounds'"
+        CALL getComputerChoice RETURNING computerChoice
+        CALL getPlayerChoice RETURNING playerChoice
+        IF playerChoice is "byebye" THEN BREAK
+        PRINT "Computer has chosen 'computerChoice'"
+        PRINT "Player has chosen 'playerChoice'"
+        CALL determineGameDecision (playerChoice, computerChoice) RETURNING decision
+        IF decision is win THEN
+            PRINT "You won! 'playerChoice'  beats 'computerChoice'"
+            INCREMENT playerPoints
+            INCREMENT currentRound
+            SET repeat to false
+            ELSE IF decision is lost THEN
+                PRINT "You lost! 'computerChoice'  beats 'playerChoice'"
+                INCREMENT computerPoints
+                INCREMENT currentRound
+                SET repeat to false
+            ENDIF
+            ELSE IF decision is tie THEN
+                    PRINT "Tie! Both chose 'playerChoice' Try again!:)"
+                    SET repeat to true
+            ENDIF
+        ENDIF
+        PRINT "Score (Player:Computer) = 'playerPoints':'computerPoints'
+    UNTIL currentRound is rounds AND repeat is false
+    PRINT "Game Over"
+    If playerPoints > computerPoints THEN
+        PRINT "Congratulations! You won the game with score 'playerPoints':'computerPoints'"
+        ELSE IF playerPoints < computerPoints THEN
+                PRINT "Nope! You lost the game with score 'playerPoints':'computerPoints'"
+        ENDIF
+        ELSE IF playerPoints is computerPoints THEN
+                PRINT "Tie! Score: 'playerPoints':'computerPoints'"
+        ENDIF
+    ELSE PRINT "Game Over"
+    ENDIF
+ENDFUNCTION
+
+CALL playGame(rounds)
+
+
+
+
+
+
+calculate random number 1-3
+translate number to schere,stein,papier
+
+display prompt (Schere,Stein,Papier?)
+	return value
+
+check_input (value)
+	undefined => exit
+	string.tolowercase != (rock,paper,scisoor) => false
+	string.tolowercase = (rock,paper,scissor) => true
+
+play_game_environment (computer_string, check_input_value)
+	if exit => exit
+	if false => display_prompt again
+  if true => gameDecision= playGame (computerString, InputValue)
+
+if gamedecision = won => playerpoints++
+if gamedecision = lost => computerpoints++
+if gamedecision = tied => rounds ++
+prompt (You lost/win/tied, Round x/5, computer: 2, player 1)
+
+rounds--
+
+
+playGame(computerString, InputValue)
+ if CS == IV => return tied
+	else if cs > IV return won
+	else if cs < IV return lost
+	else return error
