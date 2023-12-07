@@ -1,40 +1,71 @@
-// FUNCTION getComputerChoice
-//     COMPUTE random number 1-3
-//     SET computerChoice to "rock", "paper", "scissor"
-//     RETURN computerChoice
-// ENDFUNCTION
-
 function getComputerChoice(){
-    // COMPUTE random number 1-3
+// COMPUTE random number 1-3
     let number = Math.floor(Math.random() * 3) +1;
-    //     SET computerChoice to "rock", "paper", "scissor"
+// SET computerChoice to "rock", "paper", "scissor"
     switch(number){
         case 1: return "rock";
         case 2: return "paper";
         case 3: return "scissor";
     }
 }
+// TEST
+// console.log(getComputerChoice());
 
-console.log(getComputerChoice());
+function getPlayerChoice(){
+    let playerChoice;
+    let repeat;
+// REPEAT
+    do{
+// DISPLAY prompt "Rock, Paper or Scissor?"
+// GET input from prompt
+        let input = prompt("Rock, Paper or Scissor?");
+// IF input is null THEN
+// PRINT "BYE BYE"
+// SET playerChoice to "quit"
+// SET repeat to "false"
+        if (input === null) {
+            console.log("Bye Bye!")
+            playerChoice ="quit";
+            repeat=false;
+// ELSEIF input is not lowercase "rock, paper, scissor" OR not type 'string' THEN
+// DISPLAY "Wrong input. Please enter rock, paper or scissor!"
+// SET repeat to "true"
+        }else if ((typeof input !== "string")|| ((typeof input === "string") && !((input.toLowerCase() === "rock") || (input.toLowerCase() === "paper") || (input.toLowerCase() === "scissor")))){
+            alert('Wrong input. Please enter "rock", "paper" or "scissor!"');
+            repeat=true;
+// ELSE repeat=false
+// SET playerChoice=input.toLowerCase()
+        }else{
+            repeat=false;
+            playerChoice=input.toLowerCase();
+        }
+// UNTIL repeat is false        
+    }while(repeat)
+// RETURN playerChoice;
+    return playerChoice;
+}
+
+//TEST
+console.log(getPlayerChoice());
+
 
 // FUNCTION getPlayerChoice
-//     DISPLAY prompt "Rock, Paper or Scissor?"
-//     GET input from prompt
-//         IF input is null THEN
-//         PRINT "BYE BYE"
-//         SET playerChoice to "byebye"
-//             ELSEIF  input is not lowercase "rock, paper, scissor" THEN
-//                 REPEAT 
-//                     DISPLAY prompt "Wrong input. Please enter rock, paper or scissor"
-//                     GET input from prompt
-//                 UNTIL input is lowercase "rock,paper,scissor"
-//                 SET playerChoice to input
-//             ENDIF
-//             ELSEIF  input is lowercase "rock,paper, scissor" THEN
-//                 SET playerChoice to input
-//             ENDIF
-//         ENDIF
-//     RETURN playerChoice
+// REPEAT
+// DISPLAY prompt "Rock, Paper or Scissor?"
+// GET input from prompt
+//      IF input is null THEN
+//      PRINT "BYE BYE"
+//      SET playerChoice to "quit"
+//      SET repeat to "false"
+//      ELSEIF input is not lowercase "rock, paper, scissor" OR not type 'string' THEN
+//          DISPLAY "Wrong input. Please enter rock, paper or scissor!"
+//          SET repeat to "true"
+//      ENDIF
+//      ELSE repeat=false
+//           SET playerChoice=input.toLowerCase()
+//      ENDIF
+// UNTIL repeat is false
+// RETURN playerChoice;
 // ENDFUNCTION
 
 
