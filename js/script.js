@@ -1,187 +1,89 @@
-// let test=prompt("Was passiert hier?");
-// console.log(test);
+// FUNCTION getComputerChoice
+//     COMPUTE random number 1-3
+//     SET computerChoice to "rock", "paper", "scissor"
+//     RETURN computerChoice
+// ENDFUNCTION
 
-// Calculate Computer Choice using randomly generated numbers 1, 2, 3 for rock, paper, scissors
-
-//Calculate random number 1,2 or 3.
-function getRandomInt(){
-    return Math.floor(Math.random() * 3) +1;
-}
-
-// Get Computer Choice
-function getComputerChoiceInt(){
-    // Return 1,2 or 3
-    return getRandomInt();
-}
-
-
-// Translate random number to rock, paper or scissor
-function computerChoiceIntToString(computerChoiceInt){
-    if (computerChoiceInt===1){
-        return "rock";
-    }else if (computerChoiceInt===2){
-        return "paper";
-    }else if (computerChoiceInt===3){
-        return "scissor";
-    }else{
-        alert("Error: A wrong number has been transmitted!")
-    }
-}
-
-// New Display Player Prompt
-
-// function newGetPlayerInput(){
-//     let input=prompt("Paper, Stone or Scissor?");
-//     return input;
-// }
-
-// let playerInput=newGetPlayerInput();
-
-// New Check Player Input
-
-// function newCheckPlayerInput(playerInput){
-//     if (playerInput==null){
-//         return -1;
-//     }else if (["rock","paper","scissor"].includes(playerInput.toLowerCase())){
-//         return ;
-//     }else if (!["rock","paper","scissor"].includes(playerInput.toLowerCase())){
-//         return 0;
-//     }
-// }
-
-// New playGameEnvironment
-   
-// function newPlayGameEnvironment(){
-//     let computerChoice=computerChoiceIntToString(getComputerChoiceInt());
-//     let playerChoice=newCheckPlayerInput(newGetPlayerInput());
-//     let gameplay=newCheckPlayerInput(playerInput);
-// }
+// FUNCTION getPlayerChoice
+//     DISPLAY prompt "Rock, Paper or Scissor?"
+//     GET input from prompt
+//         IF input is null THEN
+//         PRINT "BYE BYE"
+//         SET playerChoice to "byebye"
+//             ELSEIF  input is not lowercase "rock, paper, scissor" THEN
+//                 REPEAT 
+//                     DISPLAY prompt "Wrong input. Please enter rock, paper or scissor"
+//                     GET input from prompt
+//                 UNTIL input is lowercase "rock,paper,scissor"
+//                 SET playerChoice to input
+//             ENDIF
+//             ELSEIF  input is lowercase "rock,paper, scissor" THEN
+//                 SET playerChoice to input
+//             ENDIF
+//         ENDIF
+//     RETURN playerChoice
 
 
+// FUNCTION determineGameDecision (computerChoice,playerChoice)
+//     INIT decision
+//     SET lost_condition to "(computerChoice is rock AND playerChoice is scissor) OR
+//                             (computerChoice is paper AND playerChoice is rock) OR
+//                             (computerChoice is scissor AND playerChoice is paper)"
+//     IF computerChoice is playerChoice THEN
+//         SET decision to "tie"
+//         ELSEIF  lost_condition THEN
+//                 SET decision to "lost"
+//         ENDIF
+//         ELSEIF !lost_condition THEN
+//                 SET decision to "win"
+//         ENDIF
+//     ENDIF          
+//     RETURN decision
+// ENDFUNCTION
 
+// SET rounds
+// FUNCTION playGame (rounds)
+//     SET currentRound to 1
+//     SET playerPoints to 0
+//     SET computerPoints to 0
+//     SET REPEAT to 0
+//     REPEAT
+//         PRINT "round 'currentRound' of 'rounds'"
+//         CALL getComputerChoice RETURNING computerChoice
+//         CALL getPlayerChoice RETURNING playerChoice
+//         IF playerChoice is "byebye" THEN BREAK
+//         PRINT "Computer has chosen 'computerChoice'"
+//         PRINT "Player has chosen 'playerChoice'"
+//         CALL determineGameDecision (playerChoice, computerChoice) RETURNING decision
+//         IF decision is win THEN
+//             PRINT "You won! 'playerChoice'  beats 'computerChoice'"
+//             INCREMENT playerPoints
+//             INCREMENT currentRound
+//             SET repeat to false
+//             ELSE IF decision is lost THEN
+//                 PRINT "You lost! 'computerChoice'  beats 'playerChoice'"
+//                 INCREMENT computerPoints
+//                 INCREMENT currentRound
+//                 SET repeat to false
+//             ENDIF
+//             ELSE IF decision is tie THEN
+//                     PRINT "Tie! Both chose 'playerChoice' Try again!:)"
+//                     SET repeat to true
+//             ENDIF
+//         ENDIF
+//         PRINT "Score (Player:Computer) = 'playerPoints':'computerPoints'
+//     UNTIL currentRound is rounds AND repeat is false
+//     PRINT "Game Over"
+//     If playerPoints > computerPoints THEN
+//         PRINT "Congratulations! You won the game with score 'playerPoints':'computerPoints'"
+//         ELSE IF playerPoints < computerPoints THEN
+//                 PRINT "Nope! You lost the game with score 'playerPoints':'computerPoints'"
+//         ENDIF
+//         ELSE IF playerPoints is computerPoints THEN
+//                 PRINT "Tie! Score: 'playerPoints':'computerPoints'"
+//         ENDIF
+//     ELSE PRINT "Game Over"
+//     ENDIF
+// ENDFUNCTION
 
-// WhatIsYourChoice Prompt
-
-function displayPlayerPrompt(){
-    let input = prompt("What is your choice?", "Rock? | Paper? | Scissors?");
-    if (input===null){
-        return false;
-    }else{
-        return input.toLocaleLowerCase();
-    }
-}
-
-// GET player selection 
-
-function getPlayerSelectionString(){
-    // return ((prompt("What is your choice?", "Rock | Paper | Scissors")).toLocaleLowerCase());
-    
-    let playerSelectionString = displayPlayerPrompt();
-
-    if (playerSelectionString==false){return false}
-    
-    while (!checkPlayerSelectionString(playerSelectionString)){
-        playerSelectionString = displayPlayerPrompt();
-    }
-    // console.log("Der Spieler hat sich für \"" + playerSelectionString + "\" entschieden");
-    return playerSelectionString;
-}
-
-//Check if player selection is valid
-function checkPlayerSelectionString(playerSelectionString){
-    if ((playerSelectionString==="rock") || (playerSelectionString==="paper") || (playerSelectionString==="scissor")){
-        return true;
-    }else {
-        console.log("The player has chosen a not valid input: \"" + playerSelectionString + "\"");
-        alert('Error: "' + playerSelectionString + '" is not a valid input.\n\nOnly "rock", "paper" oder "scissor" are allowed');
-        return false;
-    }
-
-}
-
-
-
-// Translate playerSelectionString to Int => currently no use-case for this
-
-
-// function playerSelectionStringToInt(playerSelectionString){
-    // if (playerSelectionString==="rock"){
-        // return 1;
-    // }else if (playerSelectionString==="paper"){
-        // return 2;
-    // }else if (playerSelectionString==="scissor"){
-        // return 3;
-    // }else{
-        // alert('Fehler: "' + playerSelectionString + '" ist keine gültige Eingabe.\n\nNur "Schere", "Stein" oder "Papier" sind erlaubt');
-        // return 4;
-    // }
-// }
-
-// Play game to get winner
-
-    // player + computer => 
-    // rock + paper => loose
-    // rock + scissor => win
-    // rock + rock => ties
-
-    // paper + rock => win
-    // paper + scissor => loose
-    // paper + paper => ties
-
-    // scissor + rock => loose
-    // scissor + paper => win
-    // scissor + scissor => ties
-
-
-function playGame(computerChoiceString,playerSelectionString){
-    if ((playerSelectionString==="rock") && (computerChoiceString==="paper") || (playerSelectionString==="paper") && (computerChoiceString==="scissor") || (playerSelectionString==="scissor") && (computerChoiceString==="rock")){
-        return ('You lose! ' + computerChoiceString + ' beats ' + playerSelectionString);
-        // return "false";
-    }else if((playerSelectionString==="rock") && (computerChoiceString==="scissor") || (playerSelectionString==="paper") && (computerChoiceString==="rock") || (playerSelectionString==="scissor") && (computerChoiceString==="paper")){
-        return ('You win! ' + playerSelectionString + ' beats ' + computerChoiceString);
-        // return "true";
-    }else if(playerSelectionString===computerChoiceString){
-        return "Ties. Try again!";
-        // return "ties";
-    }else{
-        return "Error. Something went wrong at playGame()";
-    }
-}
-
-// DEFINE function that plays "playGame" multiple times"
-
-let repeat =5;
-playMultipleGames(repeat);
-
-function playMultipleGames(repeat){
-    console.log("Rounds:"+repeat);
-    let computerPoints=0;
-    let playerPoints=0;
-    while (repeat > 0){
-        console.log("Rounds left:" + repeat);
-        let computerChoiceInt=getComputerChoiceInt();
-        let computerChoiceString=computerChoiceIntToString(computerChoiceInt);
-        console.log("The computer has chosen: \"" + computerChoiceString + "\"");
-
-        let playerSelectionString=getPlayerSelectionString();
-        // let playerSelectionInt=playerSelectionStringToInt();
-        if (playerSelectionString==false){break}
-        console.log("The player has chosen: \"" + playerSelectionString + "\"");
-        
-        console.log(playGame(computerChoiceString,playerSelectionString));
-
-        repeat--;
-    }
-
-}
-
-// Count points every round and announce winner
-
-
-
-
-// Abbruch Eingabe (/)
-// Schleife für prompt falsche eingabe (/)
-// Punkte zählen und Winner ausgeben
-
-// Jede Runde sollen die Punkte gezählt und am Ende der Sieger benannt werden 
+// CALL playGame(rounds)
