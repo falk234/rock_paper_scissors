@@ -47,34 +47,36 @@ function getPlayerChoice(){
 }
 
 //TEST
-console.log(getPlayerChoice());
+// console.log(getPlayerChoice());
 
 
-// FUNCTION getPlayerChoice
-// REPEAT
-// DISPLAY prompt "Rock, Paper or Scissor?"
-// GET input from prompt
-//      IF input is null THEN
-//      PRINT "BYE BYE"
-//      SET playerChoice to "quit"
-//      SET repeat to "false"
-//      ELSEIF input is not lowercase "rock, paper, scissor" OR not type 'string' THEN
-//          DISPLAY "Wrong input. Please enter rock, paper or scissor!"
-//          SET repeat to "true"
-//      ENDIF
-//      ELSE repeat=false
-//           SET playerChoice=input.toLowerCase()
-//      ENDIF
-// UNTIL repeat is false
-// RETURN playerChoice;
-// ENDFUNCTION
+
+
 
 
 // FUNCTION determineGameDecision (computerChoice,playerChoice)
-//     INIT decision
-//     SET lost_condition to "(computerChoice is rock AND playerChoice is scissor) OR
-//                             (computerChoice is paper AND playerChoice is rock) OR
-//                             (computerChoice is scissor AND playerChoice is paper)"
+function determineGameDecision(computerChoice,playerChoice){
+// INIT decision
+    let decision;
+// SET lost_condition to "(computerChoice is rock AND playerChoice is scissor) OR
+//                        (computerChoice is paper AND playerChoice is rock) OR
+//                        (computerChoice is scissor AND playerChoice is paper)"
+    let lostCondition='(computerChoice === "rock" && playerChoice === "scissor") || (computerChoice === "paper" && playerChoice === "rock") || (computerChoice === "scissor" && playerChoice === "paper")';
+    if(computerChoice===playerChoice){
+        decision="tie";
+    }else if (lostCondition){
+        decision="lost";
+    }else if(!(lostCondition)){
+        decision="win";
+    }
+    return decision;
+}
+
+//TEST
+let computerChoice=getComputerChoice();
+let playerChoice=getPlayerChoice();
+console.log(determineGameDecision(computerChoice,playerChoice));
+
 //     IF computerChoice is playerChoice THEN
 //         SET decision to "tie"
 //         ELSEIF  lost_condition THEN
@@ -84,7 +86,9 @@ console.log(getPlayerChoice());
 //                 SET decision to "win"
 //         ENDIF
 //     ENDIF          
-//     RETURN decision
+//     RETURN decision  
+
+
 // ENDFUNCTION
 
 // SET rounds
