@@ -101,7 +101,7 @@ function playGame(rounds){
         console.log("round "+currentRound+" of "+rounds);
         let computerChoice=getComputerChoice();
         let playerChoice=getPlayerChoice();
-        if(playerChoice=="byebye"){break;}
+        if(playerChoice=="quit"){break;}
         console.log("Computer has chosen: "+computerChoice);
         console.log("Player has chosen: "+playerChoice);
         let decision=determineGameDecision(playerChoice,computerChoice);
