@@ -5,23 +5,23 @@ FUNCTION getComputerChoice
 ENDFUNCTION
 
 FUNCTION getPlayerChoice
+    REPEAT
     DISPLAY prompt "Rock, Paper or Scissor?"
     GET input from prompt
         IF input is null THEN
         PRINT "BYE BYE"
-        SET playerChoice to "byebye"
-            ELSEIF  input is not lowercase "rock, paper, scissor" THEN
-                REPEAT 
-                    DISPLAY prompt "Wrong input. Please enter rock, paper or scissor"
-                    GET input from prompt
-                UNTIL input is lowercase "rock,paper,scissor"
-                SET playerChoice to input
-            ENDIF
-            ELSEIF  input is lowercase "rock,paper, scissor" THEN
-                SET playerChoice to input
-            ENDIF
+        SET playerChoice to "quit"
+        SET repeat to "false"
+        ELSEIF input is not lowercase "rock, paper, scissor" OR not type 'string' THEN
+            DISPLAY "Wrong input. Please enter rock, paper or scissor!"
+            SET repeat to "true"
         ENDIF
+        ELSE repeat=false
+            SET playerChoice=input.toLowerCase()
+        ENDIF
+    UNTIL repeat is false
     RETURN playerChoice
+ENDFUNCTION
 
 
 FUNCTION determineGameDecision (computerChoice,playerChoice)
