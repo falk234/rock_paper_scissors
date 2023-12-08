@@ -62,41 +62,87 @@ function determineGameDecision(computerChoice,playerChoice){
 //                        (computerChoice is paper AND playerChoice is rock) OR
 //                        (computerChoice is scissor AND playerChoice is paper)"
     let lostCondition='(computerChoice === "rock" && playerChoice === "scissor") || (computerChoice === "paper" && playerChoice === "rock") || (computerChoice === "scissor" && playerChoice === "paper")';
+//     IF computerChoice is playerChoice THEN
+//         SET decision to "tie"        
     if(computerChoice===playerChoice){
         decision="tie";
+// ELSEIF  lost_condition THEN
+// SET decision to "lost"
     }else if (lostCondition){
         decision="lost";
+// ELSEIF !lost_condition THEN
+// SET decision to "win"
     }else if(!(lostCondition)){
         decision="win";
     }
+// RETURN decision 
     return decision;
 }
 
 //TEST
-let computerChoice=getComputerChoice();
-let playerChoice=getPlayerChoice();
-console.log(determineGameDecision(computerChoice,playerChoice));
+// let computerChoice=getComputerChoice();
+// let playerChoice=getPlayerChoice();
+// console.log(determineGameDecision(computerChoice,playerChoice));
 
-//     IF computerChoice is playerChoice THEN
-//         SET decision to "tie"
-//         ELSEIF  lost_condition THEN
-//                 SET decision to "lost"
-//         ENDIF
-//         ELSEIF !lost_condition THEN
-//                 SET decision to "win"
-//         ENDIF
-//     ENDIF          
-//     RETURN decision  
-
-
-// ENDFUNCTION
 
 // SET rounds
+let rounds=5;
 // FUNCTION playGame (rounds)
-//     SET currentRound to 1
-//     SET playerPoints to 0
-//     SET computerPoints to 0
-//     SET REPEAT to 0
+function playGame(rounds){
+// SET currentRound to 1
+    let currentRound=1;
+// SET playerPoints to 0
+    let playerPoints=0;
+// SET computerPoints to 0
+    let computerPoints=0;
+// SET REPEAT to 0
+    let repeat=false;
+    do{
+        console.log("round "+currentRound+" of "+rounds);
+        let computerChoice=getComputerChoice();
+        let playerChoice=getPlayerChoice();
+        if(playerChoice=="byebye"){break;}
+        console.log("Computer has chosen: "+computerChoice);
+        console.log("Player has chosen: "+playerChoice);
+        let decision=determineGameDecision(playerChoice,computerChoice);
+        if (decision=="win"){
+            console.log("You won! "+ playerChoice+" beats "+computerChoice+"!");
+            playerPoints++;
+            currentRound++;
+            repeat=false;
+        }else if(decision=="lost"){
+            console.log("You lost! "+ computerChoice+" beats "+playerChoice+"!");
+            computerPoints++;
+            currentRound++;
+            repeat=false;
+        }else if(decision="tie"){
+            console.log("Tie! Both chose "+playerChoice+"! Try again!:)");
+            repeat=true;
+        }
+        console.log("Score (Player:Computer) = "+playerPoints+":"+computerPoints);
+        }while(repeat==true || (rounds!=currentRound))
+    console.log("Game Over");
+    if(playerPoints>computerPoints){
+        console.log("Congratulations! You won the game with score "+playerPoints+":"+computerPoints);
+    }else if(playerPoints<computerPoints){
+        console.log("You lost the game with score "+playerPoints+":"+computerPoints);
+    }else if (playerPoints==computerPoints){
+        console.log("Tie! Score: "+playerPoints+":"+computerPoints);
+    }
+}
+
+playGame(rounds);
+
+
+    //     If playerPoints > computerPoints THEN
+//         PRINT "Congratulations! You won the game with score 'playerPoints':'computerPoints'"
+//         ELSE IF playerPoints < computerPoints THEN
+//                 PRINT "Nope! You lost the game with score 'playerPoints':'computerPoints'"
+//         ENDIF
+//         ELSE IF playerPoints is computerPoints THEN
+//                 PRINT "Tie! Score: 'playerPoints':'computerPoints'"
+//         ENDIF
+//     ELSE PRINT "Game Over"
 //     REPEAT
 //         PRINT "round 'currentRound' of 'rounds'"
 //         CALL getComputerChoice RETURNING computerChoice
@@ -132,7 +178,6 @@ console.log(determineGameDecision(computerChoice,playerChoice));
 //         ELSE IF playerPoints is computerPoints THEN
 //                 PRINT "Tie! Score: 'playerPoints':'computerPoints'"
 //         ENDIF
-//     ELSE PRINT "Game Over"
 //     ENDIF
 // ENDFUNCTION
 
