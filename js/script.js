@@ -32,7 +32,7 @@ function getPlayerChoice(){
 // SET repeat to "true"
         // }else if ((typeof input !== "string")|| ((typeof input === "string") && !((input.toLowerCase() === "rock") || (input.toLowerCase() === "paper") || (input.toLowerCase() === "scissor")))){
         }else if ((typeof input !== "string") || !((input.toLowerCase() === "rock") || (input.toLowerCase() === "paper") || (input.toLowerCase() === "scissor"))){
-            alert('Wrong input. Please enter "rock", "paper" or "scissor!"');
+            alert('Wrong input. Please enter "rock", "paper" or "scissor"!');
             repeat=true;
 // ELSE repeat=false
 // SET playerChoice=input.toLowerCase()
@@ -86,9 +86,9 @@ function determineGameDecision(computerChoice,playerChoice){
 
 
 // SET rounds
-let rounds=5;
+let rounds;
 // FUNCTION playGame (rounds)
-function playGame(rounds){
+function playGame(){
 // SET currentRound to 1
     let currentRound=1;
 // SET playerPoints to 0
@@ -98,7 +98,7 @@ function playGame(rounds){
 // SET REPEAT to 0
     let repeat=false;
     do{
-        console.log("round "+currentRound+" of "+rounds);
+        console.log("round "+currentRound);
         let computerChoice=getComputerChoice();
         let playerChoice=getPlayerChoice();
         if(playerChoice=="quit"){break;}
@@ -120,7 +120,7 @@ function playGame(rounds){
             repeat=true;
         }
         console.log("Score (Player:Computer) = "+playerPoints+":"+computerPoints);
-        }while(repeat==true || (rounds!=currentRound))
+        }while(repeat==true)
     console.log("Game Over");
     if(playerPoints>computerPoints){
         console.log("Congratulations! You won the game with score "+playerPoints+":"+computerPoints);
@@ -131,10 +131,10 @@ function playGame(rounds){
     }
 }
 
-playGame(rounds);
+playGame();
 
 
-    //     If playerPoints > computerPoints THEN
+//     If playerPoints > computerPoints THEN
 //         PRINT "Congratulations! You won the game with score 'playerPoints':'computerPoints'"
 //         ELSE IF playerPoints < computerPoints THEN
 //                 PRINT "Nope! You lost the game with score 'playerPoints':'computerPoints'"
