@@ -38,43 +38,43 @@ function playGame(playerChoice){
 // SET REPEAT to 0
     let repeat=false;
     do{
-        console.log("round "+currentRound);
+        addToResultDiv("round "+currentRound);
         let computerChoice=getComputerChoice();
-        console.log("Computer has chosen: "+computerChoice);
-        console.log("Player has chosen: "+playerChoice);
+        addToResultDiv("Computer has chosen: "+computerChoice);        
+        addToResultDiv("Player has chosen: "+playerChoice);
         let decision=determineGameDecision(computerChoice,playerChoice);
         if (decision=="win"){
-            console.log("You won! "+ playerChoice+" beats "+computerChoice+"!");
+            addToResultDiv("You won! "+ playerChoice+" beats "+computerChoice+"!");
             playerPoints++;
             currentRound++;
             repeat=false;
         }else if(decision=="lost"){
-            console.log("You lost! "+ computerChoice+" beats "+playerChoice+"!");
+            addToResultDiv("You lost! "+ computerChoice+" beats "+playerChoice+"!");
             computerPoints++;
             currentRound++;
             repeat=false;
         }else if(decision=="tie"){
-            console.log("Tie! Both chose "+playerChoice+"! Try again!:)");
+            addToResultDiv("Tie! Both chose "+playerChoice+"! Try again!:)");
             repeat=true;
         }
-        console.log("Score (Player:Computer) = "+playerPoints+":"+computerPoints);
+        addToResultDiv("Score (Player:Computer) = "+playerPoints+":"+computerPoints);
         }while(repeat==true);
-    console.log("Game Over");
-    if(playerPoints>computerPoints){
-        console.log("Congratulations! You won the game with score "+playerPoints+":"+computerPoints);
-    }else if(playerPoints<computerPoints){
-        console.log("You lost the game with score "+playerPoints+":"+computerPoints);
-    }else if (playerPoints==computerPoints){
-        console.log("Tie! Score: "+playerPoints+":"+computerPoints);
-    }
+    addToResultDiv("Game Over");
+    // Deactivated, because currently only no limited number of rounds in implemented
+    // if(playerPoints>computerPoints){
+    //     addToResultDiv("Congratulations! You won the game with score "+playerPoints+":"+computerPoints);
+    // }else if(playerPoints<computerPoints){
+    //     addToResultDiv("You lost the game with score "+playerPoints+":"+computerPoints);
+    // }else if (playerPoints==computerPoints){
+    //     addToResultDiv("Tie! Score: "+playerPoints+":"+computerPoints);
+    // }
 }
 
 const buttons=document.querySelectorAll('button');
 buttons.forEach(button => {
     button.addEventListener('click', btnEvent => {
         playGame(btnEvent.target.id);
-    } )
-    
+    }) 
 });
 
 // const button_rock=document.querySelector('#rock');
@@ -85,4 +85,9 @@ buttons.forEach(button => {
 // button_paper.addEventListener('click', () => {playGame('paper')});
 // button_scissor.addEventListener('click', () => {playGame('scissor')});
 
-
+const result_div=document.querySelector('#result_div');
+const addToResultDiv = (toAdd) => {
+    const child_div=document.createElement('div');
+    child_div.textContent=toAdd;
+    result_div.appendChild(child_div);
+}
