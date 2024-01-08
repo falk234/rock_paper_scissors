@@ -2,6 +2,7 @@ let rounds=5;
 let currentRound=1;
 let playerPoints=0;
 let computerPoints=0;
+let endPoints=5; // Once one player reaches x points, game will end
 
 const buttons=document.querySelectorAll('button');
 buttons.forEach(button => {
@@ -50,7 +51,7 @@ function playGame(playerChoice){
         addToResultDiv("Tie! Both chose "+playerChoice+"! Try again!:)");
     }
 
-    if (playerPoints<5){
+    if (playerPoints < endPoints && computerPoints < endPoints){
         addToResultDiv("Score (Player:Computer) = "+playerPoints+":"+computerPoints);
     }else{
         addToResultDiv("Game Over");
