@@ -69,24 +69,20 @@ function playGame(playerChoice){
     }
 }
 
-// const buttons=document.querySelectorAll('button');
-
-// buttons.forEach(button => {
-//     button.addEventListener('click', (playGame(button.id)));
+const buttons=document.querySelectorAll('button');
+buttons.forEach(button => {
+    button.addEventListener('click', btnEvent => {
+        playGame(btnEvent.target.id);
+    } )
     
-// });
+});
 
-const button_rock=document.querySelector('#rock');
-const button_paper=document.querySelector('#paper');
-const button_scissor=document.querySelector('#scissor');
+// const button_rock=document.querySelector('#rock');
+// const button_paper=document.querySelector('#paper');
+// const button_scissor=document.querySelector('#scissor');
 
-button_rock.addEventListener('click', () => {playGame('rock')});
-button_paper.addEventListener('click', () => {playGame('paper')});
-button_scissor.addEventListener('click', () => {playGame('scissor')});
-
-
-// unklar, warum Spieler immer verliert, obwohl er eigentlich gewinnen müsste..
-// nochmal ohne buttons testen.
+// button_rock.addEventListener('click', () => {playGame('rock')});
+// button_paper.addEventListener('click', () => {playGame('paper')});
+// button_scissor.addEventListener('click', () => {playGame('scissor')});
 
 
-// 1) Test ohne Buttons, Eingabe über console;
