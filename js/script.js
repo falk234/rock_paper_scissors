@@ -15,7 +15,7 @@ buttons.forEach(button => {
 });
 
 function playGame(playerChoice){       
-    addToResultDiv("round "+currentRound);
+    addToResultDiv("Round "+currentRound);
     let computerChoice=getComputerChoice();
     addToResultDiv("Computer has chosen: "+computerChoice);        
     addToResultDiv("Player has chosen: "+playerChoice);
@@ -34,6 +34,7 @@ function playGame(playerChoice){
 
     if (playerPoints < endPoints && computerPoints < endPoints){
         addToResultDiv("Score (Player:Computer) = "+playerPoints+":"+computerPoints);
+        result_div.appendChild(document.createElement('p'));
     }else{
         addToResultDiv("Game Over");
         if(playerPoints>computerPoints){
@@ -46,6 +47,7 @@ function playGame(playerChoice){
         currentRound=1;
         playerPoints=0;
         computerPoints=0;
+        result_div.appendChild(document.createElement('p'));
     } 
 }
 
@@ -75,5 +77,7 @@ function determineGameDecision(computerChoice,playerChoice){
 }
 
 
-
+// Round groß schreiben (/)
+// Leerzeile nach jedem Ergebnis (/)
+// Fettschreibungen (X)
 
